@@ -1,0 +1,49 @@
+<div id="sidebar" class="d-flex flex-column justify-content-center align-items-center">
+    <img class="logo" src="https://desa.argentinaprograma.inti.gob.ar/pluginfile.php/1/theme_moove/logo/1660276176/APLogo-20-20.png"  alt="logo argentina programa">
+    <!--div class="col-12">
+        <img [src]="persona.urlImagenPerfil" class="perfil" alt="foto de perfil">
+    </div--> 
+       
+        <p>{{persona.nombre}}</p>
+        <p>{{persona.ocupacion}}</p>
+        <!--p>{{persona.ubicacion}}</p-->
+        <!--p>{{persona.telefono}}</p-->
+        <p>{{persona.email}}</p>
+        <p><a [href]="persona.urlGit" class="enlaces"><i class="fa-brands fa-github fa-2xl"></i> Mi github</a></p>
+        <p><a [href]="persona.urlCv" class="enlaces">Curriculum Vitae</a></p>
+     
+      <button routerLink="/" fragment="sobre mi">Sobre mi</button><br>
+      <button routerLink="/" fragment="estudios">Estudios</button><br>
+      <button routerLink="/" fragment="experiencia">Experiencia</button><br>
+      <button routerLink="/" fragment="proyectos">Proyectos</button><br>
+      <button routerLink="/" fragment="habilidades">Habilidades</button><br>
+      <button *ngIf="autenticaticionService.isLoggedIn()" (click)="displayUpdateForm = !displayUpdateForm" ><i class="fa-solid fa-pen"></i> Editar Contenido</button>
+      <button *ngIf="!autenticaticionService.isLoggedIn()" (click)="redigirLogin()">Ingresar</button><br>
+      <button *ngIf="autenticaticionService.isLoggedIn()" (click)="autenticaticionService.cerrarSesion()">Cerrar sesión</button><br>
+  </div>
+<header>
+    <div class="col-12"></div>
+    <div class="row align-items-center" id="encabezado">
+        <div class="col"></div>  
+    <div class="col-12">
+        <img [src]="persona.urlImagenBanner" alt="Banner" class="banner_img">
+        </div><div></div>
+    <!--div class="col-12">
+        <img [src]="persona.urlImagenPerfil" class="perfil" alt="foto de perfil">
+    </div-->
+    <div class="col-1">
+        
+    </div>
+    <div class="col-12" *ngIf="displayUpdateForm">
+        <input [(ngModel)]="persona.nombre" type="text" placeholder={{persona.nombre}}>
+        <input [(ngModel)]="persona.ocupacion" type="text" placeholder={{persona.ocupacion}}>
+        <input [(ngModel)]="persona.ubicacion" type="text" placeholder={{persona.ubicacion}}>
+        <input [(ngModel)]="persona.telefono" type="text" placeholder={{persona.telefono}}>
+        <input [(ngModel)]="persona.email" type="text" placeholder={{persona.email}}>
+        <input [(ngModel)]="persona.urlImagenPerfil" type="text" placeholder="url de la imagen de perfil">
+        <input [(ngModel)]="persona.urlImagenBanner" type="text" placeholder="url de la imagen del banner">
+        <input [(ngModel)]="persona.urlGit" type="text" placeholder="url a GitHub">
+        <input [(ngModel)]="persona.urlCv" type="text" placeholder="url a CV">
+        <button type="button" class="btn btn-success btn-sm" (click)="cargar(persona)">Editar</button>
+      </div></div>
+</header>

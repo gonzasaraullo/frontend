@@ -1,0 +1,50 @@
+<div class="container-text-center" id="proyectos">
+    <div class="row row-cols-5">
+        <div class="col-10">
+            <h2>Proyectos</h2>
+          </div>
+          <div class="col-2">
+            <button *ngIf="autenticaticionService.isLoggedIn()" type="button" class="btn btn-outline-light" (click)="displayForm = !displayForm"><i class="fa-solid fa-pen"></i></button>
+            <button *ngIf="autenticaticionService.isLoggedIn()" type="button" class="btn btn-outline-light" (click)="displayUpdateForm = !displayUpdateForm"><i class="fa-solid fa-pen"></i></button>
+            <button *ngIf="autenticaticionService.isLoggedIn()" type="button" class="btn btn-outline-light" (click)="displayDeleteForm = !displayDeleteForm"><i class="fa-solid fa-trash"></i></button>
+          </div>  
+        <div *ngFor="let proyecto of proyectos">
+            <!--div>
+            <a [attr.href]="proyecto.urlProyecto" class="enlaces" style="position: relative;left: 14px;" >{{proyecto.nombreProyecto}}</a>
+            <p class="texto-a-derecha">{{proyecto.descripcionProyecto}}</p>
+            <p>{{proyecto.fechaProyecto}}</p>
+            <p>{{proyecto.urlImagen}}</p>
+        </div-->
+        <article class="card">
+          <div class="temporary_text">
+              Place image here
+          </div>
+      <div class="card_content">
+          <span class="card_title">{{proyecto.nombreProyecto}}</span>
+              <span class="card_subtitle">{{proyecto.fechaProyecto}}</span>
+              <p class="card_description">{{proyecto.descripcionProyecto}}</p>
+              <a class="card_description" [attr.href]="proyecto.urlProyecto" class="enlaces" style="position: relative;left: 14px;" >Repositorio</a>   
+      </div>
+      </article>
+        <div *ngIf="displayUpdateForm">
+            <input [(ngModel)]="proyecto.nombreProyecto" type="text" placeholder={{proyecto.nombreProyecto}}>
+            <input [(ngModel)]="proyecto.urlProyecto" type="text" placeholder={{proyecto.urlProyecto}}>
+            <input [(ngModel)]="proyecto.fechaProyecto" type="text" placeholder={{proyecto.fechaProyecto}}>
+            <input [(ngModel)]="proyecto.descripcionProyecto" type="text" placeholder={{proyecto.descripcionProyecto}}>
+            <input [(ngModel)]="proyecto.urlImagen" type="text" placeholder={{proyecto.urlImagen}}>
+            <button type="button" class="btn btn-success btn-sm" (click)="cargar(proyecto)">Editar</button>
+          </div>
+          <div *ngIf="displayDeleteForm">
+            <button type="button" class="btn btn-danger btn-sm" (click)="deleteProyecto(proyecto)"><i class="fa-solid fa-trash"></i> Eliminar</button>
+          </div>
+        </div>
+        <div *ngIf="displayForm">   
+            <input [(ngModel)]="proyecto.nombreProyecto" type="text" class="border border-success" class="rounded-pill" placeholder="Nombre del proyecto">
+            <input [(ngModel)]="proyecto.fechaProyecto" type="text" class="border border-success" class="rounded-pill" placeholder="fecha del proyecto">
+            <input [(ngModel)]="proyecto.descripcionProyecto" type="text" class="border border-success" class="rounded-pill" placeholder="descripcion del proyecto">
+            <input [(ngModel)]="proyecto.urlProyecto" type="text" class="border border-success" class="rounded-pill" placeholder="url al proyecto">     
+            <input [(ngModel)]="proyecto.urlImagen" type="text" class="border border-success" class="rounded-pill" placeholder="Url de la imagen o video de la vista previa del proyecto">
+            <button type="button" class="btn btn-success btn-sm"  (click)="createProyecto()" > Agregar</button>
+        </div>
+    </div>
+</div>
